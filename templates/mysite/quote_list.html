@@ -1,22 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %} Post {% endblock %}
+{% block title %} Quote {% endblock %}
 
 {% block content %}
-      {% for post in posts %}
+      {% for quote in quotes %}
       <div id="carta" class="card col-4 text-center mt-4">
         <div class="card-header">
-          Post
+          Quote
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <p class="card-text">{{ post.text }}</p>
+          <h5 class="card-title">{{ quote.title }}</h5>
+          <p class="card-text">{{ quote.text }}</p>
           <a href="#" class="btn btn-primary">Read</a>
         </div>
         <div class="card-footer text-muted">
-          {{ post.published_date }}
+          {{ quote.published_date }}
         </div>
       </div>
       {% endfor %}
 {% endblock %}
-
