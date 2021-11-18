@@ -3,23 +3,16 @@
 {% block title %} Quote {% endblock %}
 
 {% block content %}
-      {% for quote in quotes %}
       <div id="carta" class="card col-4 text-center mt-4">
         <div class="card-header">
           Quote
         </div>
         <div class="card-body">
           <h5 class="card-title">{{ quote.title }}</h5>
-          {% if quote.text|length > 65 %}
-          <p class="card-text">{{ quote.text|truncatewords:65 }}...</p>
-          {% else %}
-          <p class="card-text">{{ quote.text }}</p>
-          {% endif %}
-          <a href="{{ quote.get_absolute_url }}" class="btn btn-primary">Read</a>
+            <p class="card-text">{{ quote.text}}</p>
         </div>
         <div class="card-footer text-muted">
           {{ quote.published_date }}
         </div>
       </div>
-      {% endfor %}
 {% endblock %}

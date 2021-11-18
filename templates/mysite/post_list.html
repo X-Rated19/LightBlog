@@ -10,8 +10,12 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">{{ post.title }}</h5>
+          {% if post.text|length > 50 %}
+          <p class="card-text">{{ post.text|truncatewords:50 }}...</p>
+          {% else %}
           <p class="card-text">{{ post.text }}</p>
-          <a href="#" class="btn btn-primary">Read</a>
+          {% endif %}
+          <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read</a>
         </div>
         <div class="card-footer text-muted">
           {{ post.published_date }}
