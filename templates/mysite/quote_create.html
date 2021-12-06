@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Quote Create {% endblock %}
+
+{% block content %}
+    <form action="{% url 'quote_create' %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="alert alert danger">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+            {{ field.label }}
+            {{ field }}
+        {% endfor %}
+
+        <button class="btn btn-primary" type="submit">Create Quote</button>
+    </form>
+{% endblock %}
