@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.urls import reverse
 from django.views.generic import View
 from django.shortcuts import get_object_or_404
 from .models import Post, Quote
-from .utils import ObjectDetailMixin, ObjectCreateMixin
+from .utils import *
 from .forms import PostForm, QuoteForm
 
 
@@ -35,3 +36,27 @@ class PostCreate(ObjectCreateMixin, View):
 class QuoteCreate(ObjectCreateMixin, View):
     model_form = QuoteForm
     template = 'mysite/quote_create.html'
+
+
+class PostUpdate(ObjectUpdateMixin, View):
+    model = Post
+    model_form = PostForm
+    template = 'mysite/post_update.html'
+
+
+class QuoteUpdate(ObjectUpdateMixin, View):
+    model = Quote
+    model_form = QuoteForm
+    template = 'mysite/quote_update.html'
+
+
+class PostDelete(ObjectDeleteMixin, View):
+    model = Post
+    template = 'mysite/post_delete.html'
+    redirect_url = 'post_list'
+
+
+class QuoteDelete(ObjectDeleteMixin, View):
+    model = Quote
+    template = 'mysite/quote_delete.html'
+    redirect_url = 'quote_list'
