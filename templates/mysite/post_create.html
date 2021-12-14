@@ -3,7 +3,7 @@
 {% block title %} Post Create {% endblock %}
 
 {% block content %}
-    <form action="{% url 'post_create' %}" method="post">
+    <form action="{% url 'post_create' %}" class="w-50 text-center mt-3 mx-auto" method="post">
         {% csrf_token %}
         {% for field in form %}
             {% if field.errors %}
@@ -15,6 +15,6 @@
             {{ field }}
         {% endfor %}
 
-        <button class="btn btn-primary" type="submit">Create Post</button>
+        <button class="btn btn-primary mt-3" type="submit">Create Post</button>
     </form>
 {% endblock %}

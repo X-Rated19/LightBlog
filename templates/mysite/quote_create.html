@@ -3,7 +3,7 @@
 {% block title %} Quote Create {% endblock %}
 
 {% block content %}
-    <form action="{% url 'quote_create' %}" method="post">
+    <form action="{% url 'quote_create' %}" class="mt-3 text-center w-50 mx-auto" method="post">
         {% csrf_token %}
         {% for field in form %}
             {% if field.errors %}
@@ -15,6 +15,6 @@
             {{ field }}
         {% endfor %}
 
-        <button class="btn btn-primary" type="submit">Create Quote</button>
+        <button class="btn btn-primary mt-3" type="submit">Create Quote</button>
     </form>
 {% endblock %}

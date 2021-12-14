@@ -3,10 +3,10 @@
 {% block title %} Quote Delete {% endblock %}
 
 {% block content %}
-    <form action="{{ quote.get_delete_url }}" method="post">
+    <form action="{{ quote.get_delete_url }}" class="text-center mt-3 mx-auto" method="post">
         {% csrf_token %}
         <h3>Are you sure you want to delete <b>{{ quote.title|title }}</b> quote?</h3>
-        <a href="{{ quote.get_absolute_url }}">Cancel</a>
-        <button class="btn btn-danger" type="submit">Delete</button>
+        <button class="btn btn-danger mt-3" type="submit">Delete</button>
+        <a href="{{ quote.get_absolute_url }}" class="btn btn-primary mt-3">Cancel</a>
     </form>
 {% endblock %}

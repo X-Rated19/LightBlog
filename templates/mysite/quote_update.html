@@ -3,7 +3,7 @@
 {% block title %} Quote Update {% endblock %}
 
 {% block content %}
-    <form action="{{ quote.get_update_url }}" method="post">
+    <form action="{{ quote.get_update_url }}" class="w-50 text-center mx-auto" method="post">
         {% csrf_token %}
         {% for field in form %}
             {% if field.errors %}
@@ -11,8 +11,10 @@
                     {{ field.errors }}
                 </div>
             {% endif %}
-            {{ field.label }}
-            {{ field }}
+            <h5 class="my-3">
+                {{ field.label }} 
+                {{ field }}
+            </h5> 
         {% endfor %}
 
         <button class="btn btn-primary" type="submit">Update Quote</button>
