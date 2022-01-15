@@ -20,11 +20,11 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'quote_list'%}">Quotes</a>
+                <a class="navbar-brand" href="{% url 'quote_list'%}">Quotes</a>
               </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" action="{% url 'post_list' %}">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
@@ -33,6 +33,7 @@
       <div>
         {% block content %} {% endblock %}
       </div>
+      {% if request.user.is_authenticated and request.user.is_staff %}
       <div class="admin-panel align-items-center">
         <a href="/admin/" class="btn btn-outline-primary">Admin</a>
         <div class="btn-group dropstart">
@@ -49,5 +50,6 @@
                 <a href="{{ admin_object.get_delete_url }}" class="btn btn-outline-danger">Delete</a>
             {% endif %}
       </div>
+      {% endif %}
 </body>
 </html>

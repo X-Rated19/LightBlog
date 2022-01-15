@@ -3,24 +3,45 @@
 {% block title %} Post {% endblock %}
 
 {% block content %}
-      {% for post in posts %}
-      <div id="carta" class="card col-4 text-center mt-4">
-        <div class="card-header">
-          Post
+      {% for post in page_object %}
+        <div id="carta" class="card col-4 text-center mt-4">
+          <div class="card-header">
+            Post
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            {% if post.text|length > 50 %}
+            <p class="card-text">{{ post.text|truncatewords:50 }}...</p>
+            {% else %}
+            <p class="card-text">{{ post.text }}</p>
+            {% endif %}
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read</a>
+          </div>
+          <div class="card-footer text-muted">
+            {{ post.created_date }}
+          </div>
         </div>
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          {% if post.text|length > 50 %}
-          <p class="card-text">{{ post.text|truncatewords:50 }}...</p>
-          {% else %}
-          <p class="card-text">{{ post.text }}</p>
-          {% endif %}
-          <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read</a>
-        </div>
-        <div class="card-footer text-muted">
-          {{ post.created_date }}
-        </div>
-      </div>
       {% endfor %}
+      <nav aria-label="...">
+        <ul class="pagination mt-2 mb-2" id="carta">
+          <li class="page-item {% if not prev_url %} disabled {% endif %}">
+            <a class="page-link" href="{{ prev_url }}">Previous</a>
+          </li>
+      {% for n in page_object.paginator.page_range %}
+        {% if page_object.number == n %}
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+          </li>
+        {% elif n > page_object.number|add:-3 and n < page_object.number|add:3 %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+        <li class="page-item {% if not next_url %} disabled {% endif %}">
+          <a class="page-link" href="{{ next_url }}">Next</a>
+        </li>
+        </ul>
+      </nav>
 {% endblock %}
 
